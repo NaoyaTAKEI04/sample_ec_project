@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.backend.mapper.ProductMapper">
+
+    <!-- 全商品取得 -->
+    <select id="selectAllProducts" resultType="com.example.backend.model.dto.ProductDto">
+        SELECT id, name, price, description
+        FROM products
+        ORDER BY id
+    </select>
+
+    <!-- 名前で検索 -->
+    <select id="selectProductsByName" resultType="com.example.backend.model.dto.ProductDto">
+        SELECT id, name, price, description
+        FROM products
+        WHERE name ILIKE CONCAT('%', #{name}, '%')
+        ORDER BY id
+    </select>
+
+</mapper>
